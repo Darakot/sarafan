@@ -1,18 +1,20 @@
 package com.pethomeproject.sarafan.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "usr")
-public class User {
+public class User implements Serializable {
 
     @Id
     private String id;
@@ -21,5 +23,6 @@ public class User {
     private String email;
     private String gender;
     private String locale;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastVisit;
 }

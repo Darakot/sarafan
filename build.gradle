@@ -32,6 +32,15 @@ dependencies {
 
 	compile('javax.xml.bind:jaxb-api')
 
+	// https://mvnrepository.com/artifact/org.springframework.session/spring-session-jdbc
+	compile group: 'org.springframework.session', name: 'spring-session-jdbc', version: '2.2.2.RELEASE'
+
+
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.6.RELEASE'
+
+
+
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
