@@ -5,7 +5,7 @@
             {{ message.text }}
         </v-card-text>
         <v-card-actions>
-            <v-btn value="Edit" @click="edit" small flat rounded>
+            <v-btn value="Edit" @click="edit" small rounded>
                 Edit
             </v-btn>
             <v-btn icon @click="del" small>
