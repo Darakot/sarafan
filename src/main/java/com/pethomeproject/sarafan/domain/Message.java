@@ -2,9 +2,8 @@ package com.pethomeproject.sarafan.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -12,9 +11,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
-@Getter
-@Setter
-@ToString(of= {"id","text"})
+@Data
+@ToString(of = {"id", "text"})
 @EqualsAndHashCode(of = {"id"})
 public class Message {
 
@@ -30,5 +28,14 @@ public class Message {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullMessage.class)
     private LocalDateTime creationDate;
+
+    @JsonView(Views.FullMessage.class)
+    private String link;
+    @JsonView(Views.FullMessage.class)
+    private String linkTitle;
+    @JsonView(Views.FullMessage.class)
+    private String linkDescription;
+    @JsonView(Views.FullMessage.class)
+    private String linkCover;
 
 }
