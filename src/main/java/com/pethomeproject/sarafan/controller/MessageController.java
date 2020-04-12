@@ -2,6 +2,7 @@ package com.pethomeproject.sarafan.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.pethomeproject.sarafan.domain.Message;
+import com.pethomeproject.sarafan.domain.User;
 import com.pethomeproject.sarafan.domain.Views;
 import com.pethomeproject.sarafan.dto.EventType;
 import com.pethomeproject.sarafan.dto.MetaDto;
@@ -13,6 +14,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -35,6 +38,7 @@ public class MessageController {
     private final MessageRepo messageRepo;
     private final BiConsumer<EventType,Message> wsSender;
 
+    @Autowired
     public MessageController(MessageRepo messageRepo, WsSender wsSender) {
         this.messageRepo = messageRepo;
         this.wsSender = wsSender.getSender(ObjectType.MESSAGE, Views.IdName.class);
@@ -53,21 +57,29 @@ public class MessageController {
     }
 
     @PostMapping
-    public Message create(@RequestBody Message message) throws IOException {
-    message.setCreationDate(LocalDateTime.now());
-        Message updatedMessage = messageRepo.save(message);
+    public Message create(
+            @RequestBody Message message,
+            @AuthenticationPrincipal User user
+    ) throws IOException {
+        message.setCreationDate(LocalDateTime.now());
         fillMeta(message);
+        message.setAuthor(user);
+        Message updatedMessage = messageRepo.save(message);
+
         wsSender.accept(EventType.CREATE, updatedMessage);
 
         return updatedMessage;
     }
 
     @PutMapping("{id}")
-    public Message update(@PathVariable("id") Message messageFromDB,
-                          @RequestBody Message message) throws IOException {
-        BeanUtils.copyProperties(message, messageFromDB, "id");
-        fillMeta(messageFromDB);
-        Message updatedMessage = messageRepo.save(messageFromDB);
+    public Message update(
+            @PathVariable("id") Message messageFromDb,
+            @RequestBody Message message
+    ) throws IOException {
+        BeanUtils.copyProperties(message, messageFromDb, "id");
+        fillMeta(messageFromDb);
+        Message updatedMessage = messageRepo.save(messageFromDb);
+
         wsSender.accept(EventType.UPDATE, updatedMessage);
 
         return updatedMessage;

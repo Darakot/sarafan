@@ -7,10 +7,9 @@
 
 <script>
     export default {
-        name: "Auth"
+        name: 'Auth',
     }
 </script>
 
 <style scoped>
-
 </style>

@@ -4,6 +4,7 @@
                 label="New message"
                 placeholder="Write something"
                 v-model="text"
+                @keyup.enter="save"
         />
         <v-btn @click="save">
             Save
@@ -28,7 +29,7 @@
             }
         },
         methods: {
-            ...mapActions(['addMessageAction','updateMessageAction']),
+            ...mapActions(['addMessageAction', 'updateMessageAction']),
             save() {
                 const message = {
                     id: this.id,

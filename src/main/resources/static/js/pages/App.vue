@@ -3,10 +3,10 @@
         <v-app-bar app>
             <v-toolbar-title>Sarafan</v-toolbar-title>
             <v-btn class="mx-2"
-                    outlined
-                    v-if="profile"
-                    :disabled="$route.path === '/' "
-                    @click="showMessages">
+                   outlined
+                   v-if="profile"
+                   :disabled="$route.path === '/' "
+                   @click="showMessages">
                 Messages
             </v-btn>
             <v-spacer></v-spacer>
@@ -15,7 +15,7 @@
                     v-if="profile"
                     :disabled="$route.path === '/profile' "
                     @click="showProfile">
-                {{profile.name}}&nbsp
+                {{profile.name}}
             </v-btn>
             <v-btn v-if="profile" icon href="/logout">
                 <v-icon>exit_to_app</v-icon>
@@ -28,9 +28,8 @@
 </template>
 
 <script>
-    import {addHandler} from 'util/ws'
-    import {mapMutations, mapState} from "vuex";
-
+    import { mapState, mapMutations } from 'vuex'
+    import { addHandler } from 'util/ws'
     export default {
         computed: mapState(['profile']),
         methods: {
@@ -40,7 +39,7 @@
             },
             showProfile() {
                 this.$router.push('/profile')
-            },
+            }
         },
         created() {
             addHandler(data => {
@@ -56,10 +55,10 @@
                             this.removeMessageMutation(data.body)
                             break
                         default:
-                            console.error(`Looks like the event type if unknown ${data.eventType}`)
+                            console.error(`Looks like the event type if unknown "${data.eventType}"`)
                     }
                 } else {
-                    console.error(`Looks like the object type if unknown ${data.objectType}`)
+                    console.error(`Looks like the object type if unknown "${data.objectType}"`)
                 }
             })
         },
