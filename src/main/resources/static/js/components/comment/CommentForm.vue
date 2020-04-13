@@ -1,5 +1,5 @@
 <template>
-    <v-layout row>
+    <v-layout row class="px-6">
         <v-text-field
                 label="Add comment"
                 placeholder="Write something"
@@ -25,7 +25,7 @@
         methods: {
             ...mapActions(['addCommentAction']),
             async save() {
-                await this.addCommentAction ({
+                await this.addCommentAction({
                     text: this.text,
                     message: {
                         id: this.messageId

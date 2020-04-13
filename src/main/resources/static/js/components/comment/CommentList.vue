@@ -1,5 +1,5 @@
 <template>
-    <v-list two-line>
+    <v-list two-line class="px-6">
         <v-subheader>
             Comments
         </v-subheader>
