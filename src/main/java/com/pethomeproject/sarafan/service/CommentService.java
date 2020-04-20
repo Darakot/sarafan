@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.function.BiConsumer;
 
+/**
+ * сервисный слой для комментов
+ */
 @Service
 public class CommentService {
     private final CommentRepo commentRepo;

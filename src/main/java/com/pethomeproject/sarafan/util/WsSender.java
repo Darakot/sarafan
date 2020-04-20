@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.BiConsumer;
 
+/**
+ * компонент для работы с вебсокетами
+ */
 @Component
 public class WsSender {
     private final SimpMessagingTemplate template;

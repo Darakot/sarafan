@@ -7,6 +7,9 @@ import App from 'pages/App.vue'
 import store from 'store/store'
 import { connect } from './util/ws'
 import 'vuetify/dist/vuetify.min.css'
+/*
+    главная страничка которая подгружает остальные компоненты
+ */
 
 if (frontendData.profile) {
     connect()

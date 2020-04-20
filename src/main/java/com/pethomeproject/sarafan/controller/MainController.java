@@ -21,6 +21,10 @@ import java.util.HashMap;
 
 import static com.pethomeproject.sarafan.controller.MessageController.MESSAGES_PER_PAGE;
 
+/**
+ * Контроллер для основной страницы
+ * (Логику еще не выносил в сервисный слой)
+ */
 @Controller
 @RequestMapping("/")
 public class MainController {

@@ -25,6 +25,9 @@ import java.util.function.BiConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * сервисный слой для сообщений
+ */
 @Service
 public class MessageService {
     private static String URL_PATTERN = "https?:\\/\\/?[\\w\\d\\._\\-%\\/\\?=&#]+";

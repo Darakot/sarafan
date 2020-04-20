@@ -10,6 +10,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+/**
+ * Сущность для работы с БД(Сообщения)
+ */
+
 @Entity
 @Table
 @ToString(of = {"id", "text"})

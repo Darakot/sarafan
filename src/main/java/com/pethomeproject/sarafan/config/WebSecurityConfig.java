@@ -12,6 +12,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import java.time.LocalDateTime;
 
+/**
+ * конфиг для тех страниц куда нельзя зайти без логина
+ * principalExtractor - выдергивает из гуглового акк нужные данные
+ */
+
 @Configuration
 @EnableWebSecurity
 @EnableOAuth2Sso

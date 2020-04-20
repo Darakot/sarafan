@@ -9,6 +9,10 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * DTO для сообщений
+ */
+
 @Getter
 @Setter
 @AllArgsConstructor

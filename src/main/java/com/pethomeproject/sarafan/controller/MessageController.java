@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
+/**
+ * Контроллер для сообщений
+ */
 @RestController
 @RequestMapping("message")
 public class MessageController {

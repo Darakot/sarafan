@@ -5,9 +5,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * Сущность для работы с БД(Комментарии)
+ */
+
 @Entity
 @Table
-//@Data
 @Getter
 @Setter
 @AllArgsConstructor
