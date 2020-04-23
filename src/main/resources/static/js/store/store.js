@@ -8,7 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         messages,
-        ...frontendData
+        ...frontendData,
+        profile,
     },
     getters: {
         sortedMessages: state => (state.messages || []).sort((a, b) => -(a.id - b.id))

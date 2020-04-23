@@ -5,16 +5,15 @@
             <v-btn class="mx-2"
                    outlined
                    v-if="profile"
-                   :disabled="$route.path === '/' "
+                   :disabled="$route.path === '/'"
                    @click="showMessages">
                 Messages
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn
-                    outlined
-                    v-if="profile"
-                    :disabled="$route.path === '/profile' "
-                    @click="showProfile">
+                   v-if="profile"
+                   :disabled="$route.path === '/user'"
+                   @click="showProfile">
                 {{profile.name}}
             </v-btn>
             <v-btn v-if="profile" icon href="/logout">
@@ -28,21 +27,22 @@
 </template>
 
 <script>
-    import {mapMutations, mapState} from 'vuex'
-    import {addHandler} from 'util/ws'
-
+    import { mapState, mapMutations } from 'vuex'
+    import { addHandler } from 'util/ws'
     export default {
         computed: mapState(['profile']),
         methods: {
-            ...mapMutations(['addMessageMutation',
+            ...mapMutations([
+                'addMessageMutation',
                 'updateMessageMutation',
                 'removeMessageMutation',
-                'addCommentMutation']),
+                'addCommentMutation'
+            ]),
             showMessages() {
                 this.$router.push('/')
             },
             showProfile() {
-                this.$router.push('/profile')
+                this.$router.push('/user')
             }
         },
         created() {

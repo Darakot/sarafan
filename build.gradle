@@ -35,7 +35,7 @@ dependencies {
 	compile('javax.xml.bind:jaxb-api')
 
 	// https://mvnrepository.com/artifact/org.springframework.session/spring-session-jdbc
-	compile group: 'org.springframework.session', name: 'spring-session-jdbc', version: '2.2.2.RELEASE'
+//	compile group: 'org.springframework.session', name: 'spring-session-jdbc', version: '2.2.2.RELEASE'
 
 
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
