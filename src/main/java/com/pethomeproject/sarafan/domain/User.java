@@ -3,6 +3,7 @@ package com.pethomeproject.sarafan.domain;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,8 +18,8 @@ import java.util.Set;
 @Data
 @Table(name = "usr")
 @EqualsAndHashCode(of = { "id" })
-public class User implements Serializable {
-
+@ToString(of = { "id", "name" })
+public class User {
     @Id
     @JsonView(Views.IdName.class)
     private String id;
@@ -41,32 +42,18 @@ public class User implements Serializable {
     @JsonView(Views.FullProfile.class)
     private LocalDateTime lastVisit;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_subscriptions",
-            joinColumns = @JoinColumn(name = "subscriber_id"),
-            inverseJoinColumns = @JoinColumn(name = "channel_id")
+    @OneToMany(
+            mappedBy = "subscriber",
+            orphanRemoval = true
     )
     @JsonView(Views.FullProfile.class)
-    @JsonIdentityReference
-    @JsonIdentityInfo(
-            property = "id",
-            generator = ObjectIdGenerators.PropertyGenerator.class
-    )
-    private Set<User> subscriptions = new HashSet<>();
+    private Set<UserSubscription> subscriptions = new HashSet<>();
 
-
-    @ManyToMany
-    @JoinTable(
-            name = "user_subscriptions",
-            joinColumns = @JoinColumn(name = "channel_id"),
-            inverseJoinColumns = @JoinColumn(name = "subscriber_id")
+    @OneToMany(
+            mappedBy = "channel",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL
     )
     @JsonView(Views.FullProfile.class)
-    @JsonIdentityReference
-    @JsonIdentityInfo(
-            property = "id",
-            generator = ObjectIdGenerators.PropertyGenerator.class
-    )
-    private Set<User> subscribers = new HashSet<>();
+    private Set<UserSubscription> subscribers = new HashSet<>();
 }

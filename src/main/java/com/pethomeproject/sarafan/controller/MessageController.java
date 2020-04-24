@@ -33,10 +33,10 @@ public class MessageController {
     @GetMapping
     @JsonView(Views.FullMessage.class)
     public MessagePageDto list(
-            @PageableDefault(size = MESSAGES_PER_PAGE, sort = { "id" },direction = Sort.Direction.DESC) Pageable pageable
+            @AuthenticationPrincipal User user,
+            @PageableDefault(size = MESSAGES_PER_PAGE, sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-
-        return messageService.findAll(pageable);
+        return messageService.findForUser(pageable, user);
     }
 
     @GetMapping("{id}")
@@ -58,14 +58,11 @@ public class MessageController {
             @PathVariable("id") Message messageFromDb,
             @RequestBody Message message
     ) throws IOException {
-        return messageService.update(messageFromDb,message);
+        return messageService.update(messageFromDb, message);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") Message message) {
         messageService.delete(message);
     }
-
-
-
 }
